@@ -1,0 +1,16 @@
+#! /bin/sh
+
+read -p "Git project repo: " project
+
+git submodule init
+git submodule update
+
+npm install express
+
+if [ $project -ne "" ]; then
+  git remote rm origin
+  git remote add origin $project
+
+  git rm install  
+  git commit -m "Initial Commit into $project"
+fi
