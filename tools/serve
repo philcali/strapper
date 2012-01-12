@@ -6,7 +6,7 @@ fs = require 'fs'
 app = express.createServer()
 
 app.configure ->
-  app.use express.static __dirname + '/out'
+  app.use express.static __dirname + '/../out'
 
 app.listen 8080
 
