@@ -1,0 +1,4 @@
+#! /bin/sh
+
+./tools/serve
+monido src/ -e "sh tools/build "

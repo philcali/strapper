@@ -2,11 +2,16 @@
 
 read -p "Git project repo: " project
 
+# Set up submodule properly
 git submodule init
 git submodule update
 
+# Install Node tools in the right dir
+cd tools
 npm install express
+cd ../
 
+# New project sets up git properly
 if [ $project -ne "" ]; then
   git remote rm origin
   git remote add origin $project
