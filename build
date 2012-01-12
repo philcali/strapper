@@ -1,0 +1,27 @@
+#! /bin/sh
+
+name=`echo $1 | sed 's/.*\///' | sed 's/\.lmxml//'`
+
+echo "Converting $name..."
+
+if [ ! -d "out" ]; then
+  mkdir out
+  mkdir out/js
+  mkdir out/css
+fi
+
+lmxml $1 out/$name.html
+
+doctype="<!DOCTYPE html>"
+contents=`cat out/$name.html`
+
+echo "$doctype\n$contents" > out/$name.html
+
+if test -f "out/css/bootstrap.min.css" ; then
+  echo "Already have boostrap... skipping."
+else
+  cp bootstrap/*.min.css out/css
+  cp bootstrap/js/*.js out/js
+fi
+
+echo "Done"
