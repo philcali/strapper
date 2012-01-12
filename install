@@ -1,6 +1,6 @@
 #! /bin/sh
 
-read -p "Git project repo: " project
+read -p "Full git project repo url: " project
 
 # Set up submodule properly
 git submodule init
