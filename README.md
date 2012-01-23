@@ -29,6 +29,6 @@ npm install express
 ## Usage
 
 ```
-./serve
-monido src/ -e build
+./tools/serve
+monido src/ -e tools/build
 ```
