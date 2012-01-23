@@ -10,12 +10,15 @@ A combination of lmxml and node for some quick bootstrapping.
 ## Installation
 
 ```
-git clone <repo>
-cd <repo>
+git clone git://github.com/philcali/strapper.git
+cd strapper
 
 # Get lmxml trans compiler
 cs philcali/lmxml
 cs philcali/monido
+
+# Get coffee-script because why not?
+npm install -g coffee-script
 ```
 
 ## Usage
