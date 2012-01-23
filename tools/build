@@ -1,27 +1,44 @@
 #! /bin/sh
 
-name=`echo $1 | sed 's/.*\///' | sed 's/\.lmxml//'`
+get_name() {
+  name=`echo $1 | sed 's/.*\///' | sed 's/\.lmxml//'`
+  echo $name
+}
 
-echo "Converting $name..."
+gen_lmxml() {
+  name=`get_name $1`
+
+  echo "Converting $name"
+
+  lmxml $1 out/$name.html
+
+  doctype="<!DOCTYPE html>"
+  contents=`cat out/$name.html`
+
+  echo "$doctype\n$contents" > out/$name.html
+}
 
 if [ ! -d "out" ]; then
   mkdir out
   mkdir out/js
   mkdir out/css
+  # Add other resources here
+  for f in `ls src`
+  do
+    gen_lmxml src/$f
+  done
 fi
 
-lmxml $1 out/$name.html
+if [ $# -gt 0 ]; then
+  gen_lmxml $1
+fi
 
-doctype="<!DOCTYPE html>"
-contents=`cat out/$name.html`
-
-echo "$doctype\n$contents" > out/$name.html
-
-if test -f "out/css/bootstrap.min.css" ; then
+if [ -f "out/css/bootstrap.min.css" ] ; then
   echo "Already have boostrap... skipping."
 else
   cp bootstrap/*.min.css out/css
   cp bootstrap/js/*.js out/js
+  # Add other copying here
 fi
 
 echo "Done"

@@ -1,0 +1,30 @@
+#!/bin/sh
+
+for f in `ls`
+do
+  contains_src=0
+  if [ $f = "src" ]; then
+    contains_src=1
+    break;
+  fi
+done
+
+if [ $contains_src -eq 0 ]; then
+  echo "Please run this script in the directory that contains the src files: ./tools/package"
+  exit
+fi
+
+echo "Running build, just in case"
+echo "==========================="
+./tools/build
+
+
+echo "\nArchiving site, with node tools"
+echo "==============================="
+
+echo "\nVerifying node tools"
+cd tools
+npm install express
+cd ../
+
+tar -pcvf site.tar tools/serve tools/node_modules out
