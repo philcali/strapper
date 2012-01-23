@@ -13,17 +13,9 @@ A combination of lmxml and node for some quick bootstrapping.
 git clone <repo>
 cd <repo>
 
-# Get boostrap
-git submodule init
-git submodule update
-
 # Get lmxml trans compiler
 cs philcali/lmxml
 cs philcali/monido
-
-# Get 
-npm install -g coffee
-npm install express
 ```
 
 ## Usage
